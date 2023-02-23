@@ -21,6 +21,11 @@ const router = createRouter({
       path: '/contador',
       name: 'contador',
       component: () => import('../views/ContadorView.vue')
+    },
+    {
+      path: '/paises',
+      name: 'paises',
+      component: () => import('../views/APIView.vue')
     }
   ]
 })
