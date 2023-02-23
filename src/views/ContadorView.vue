@@ -1,8 +1,16 @@
-<script setup>
+<script>
 import {useContador} from '../hooks/useContador';
 import ButtonC from '../components/ButtonC.vue';
 
-const {contador, incrementar, decrementar} = useContador();
+export default {
+    components: {
+        ButtonC
+    },
+    setup(){
+        //const {contador, incrementar, decrementar} = useContador();
+        return {...useContador()}
+    }
+}
 
 </script>
 

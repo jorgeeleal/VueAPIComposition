@@ -1,8 +1,17 @@
-<script setup>
-    defineProps(['btnText']);
-
+<script>
+export default {
+    props: ['btnText'],
+    setup(props, context){
+        const accionHijo = () => {
+            context.emit('action');
+        }
+        return {
+            accionHijo
+        }
+    }
+}
 </script>
 
 <template>
-    <button @click="$emit('action')">{{ btnText }}</button>
+    <button @click="accionHijo">{{ btnText }}</button>
 </template>

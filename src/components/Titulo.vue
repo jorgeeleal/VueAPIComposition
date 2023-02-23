@@ -1,13 +1,19 @@
-<script setup>
-import { defineProps, computed} from 'vue';
+<script>
+import { computed } from 'vue';
 // -- -------------------------------------
 
-const props = defineProps(['title']);
+export default {
+    props: ['title'],
+    setup(props){
+        const plus = computed(() => {
+            return props.title + 'computed';
+        })
 
-const plus = computed(() => {
-    return props.title + 'computed';
-})
-
+        return {
+            plus
+        }
+    }
+}
 </script>
 
 <template>
@@ -15,20 +21,3 @@ const plus = computed(() => {
     <p>{{ title }}</p>
     <p>{{ plus }}</p>
 </template>
-
-
-
-<!-- ------------------------------ 
-    OPTIONS API: 
-    <script>
-    export default {
-        props: ['prop1', 'prop2'],
-        computed: {
-            
-        }
-    }
-    </script>
-    
-
-
--->

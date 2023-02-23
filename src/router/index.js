@@ -26,6 +26,12 @@ const router = createRouter({
       path: '/paises',
       name: 'paises',
       component: () => import('../views/APIView.vue')
+    },
+    {
+      path: '/paises/:pais',
+      name: 'pais',
+      props: true,            //-- Para utilizarlos en <script>
+      component: () => import('../views/PaisView.vue')
     }
   ]
 })

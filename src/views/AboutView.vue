@@ -1,64 +1,53 @@
-<script setup>
-import Titulo from '../components/Titulo.vue'
-import ButtonC from '../components/ButtonC.vue';
+<script>
 // -- ---------------------------------------------------------
 import {ref, computed} from 'vue';
+import Titulo from '../components/Titulo.vue'
+import ButtonC from '../components/ButtonC.vue';
 
-const count = ref(0);
+export default {
+  components: {
+    Titulo,
+    ButtonC
+  },
+   setup(){
+      const contador = ref(0);
+      const texto = ref('');
 
-const texto = ref('');
+      const increment = () => contador.value++;
+      const decrement = () => contador.value--;
 
-const increment = () => count.value++;
-const decrement = () => count.value--;
+      const mayuscula = computed(() => {
+        return texto.value.toUpperCase();
+      })
+      const color = computed(() => {
+        if(contador.value > 0) return 'red';
+        if(contador.value < 0) return 'green';
+      })
 
-const mayuscula = computed(() => {
-  return texto.value.toUpperCase();
-})
-const color = computed(() => {
-  if(count.value > 0) return 'red';
-  if(count.value < 0) return 'green';
-})
+      return {
+        contador,
+        texto,
+        increment,
+        decrement,
+        mayuscula,
+        color
+      }
+   }
+}
 
 </script>
 
 <template>
   <h1
     :style="{'color': color}"
-  >About: Contador: {{ count }}</h1>
-  <!--
-  <button @click="increment">sumar uno (+)</button>
-  <button @click="decrement">restar uno (-)</button>
-  -->
+  >About: Contador: {{ contador }}</h1>
   <ButtonC btnText="Aumentar" @action="increment"/>
   <ButtonC btnText="Decrementar" @action="decrement"/>
   <hr>
   <input type="text" v-model="texto"/>
   <p>{{ mayuscula }}</p>
   <hr>
-  <Titulo :title="count"/>
+
+  <Titulo :title="contador"/>
+  
 </template>
-
-<!-- -- ---------------------- Compositions API 
-
-  <script>
-    import {ref} from 'vue';
-    export default {
-      components: {
-        //component,
-      },
-      setup(){
-        const count = ref(0);
-
-        const increment = () => count.value++;
-        const decrement = () => count.value--;
-
-        return {
-          count,
-          increment,
-          decrement
-        }
-      }
-    }
-  </script>
-
--->

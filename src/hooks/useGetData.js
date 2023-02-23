@@ -4,7 +4,7 @@ import axios from "axios";
 
 export function useGetData() {
 
-    const data = ref()
+    const data = ref(null)
 
     const getData = async(url) => {
         try{
@@ -17,7 +17,7 @@ export function useGetData() {
     }
 
     return({
-        data,
+        data, 
         getData
     })
 }
